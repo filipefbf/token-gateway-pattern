@@ -1,0 +1,29 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: gateway
+
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: gateway
+            client-secret: Cz1u7gvFhkLxsLix5f4sGuHrfcZU5Hjl
+            scope: openid, profile, email
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8080/realms/myrealm
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: hello-api
+              uri: http://localhost:8081
+              predicates:
+                - Path=/hello/**
+              filters:
+                - TokenRelay
