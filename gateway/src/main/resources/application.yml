@@ -11,19 +11,17 @@ spring:
         registration:
           keycloak:
             client-id: gateway
-            client-secret: Cz1u7gvFhkLxsLix5f4sGuHrfcZU5Hjl
+            client-secret: qEOHHvEeVgmnVOaBByJGFO5ZD4W5gcTn
             scope: openid, profile, email
         provider:
           keycloak:
             issuer-uri: http://localhost:8080/realms/myrealm
   cloud:
     gateway:
-      server:
-        webflux:
-          routes:
-            - id: hello-api
-              uri: http://localhost:8081
-              predicates:
-                - Path=/hello/**
-              filters:
-                - TokenRelay
+      routes:
+        - id: hello-api
+          uri: http://localhost:8081
+          predicates:
+            - Path=/hello
+          filters:
+            - TokenRelay

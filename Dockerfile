@@ -1,5 +1,5 @@
 # Use a imagem oficial do Keycloak
-FROM quay.io/keycloak/keycloak:latest
+FROM quay.io/keycloak/keycloak:22.0.5
 
 # Define o diretório de trabalho
 WORKDIR /opt/keycloak
